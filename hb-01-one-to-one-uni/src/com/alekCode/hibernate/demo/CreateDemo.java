@@ -30,9 +30,9 @@ public class CreateDemo {
 			InstructorDetail tempInstructorDetail = new InstructorDetail("https://www.alekcode.com/youtube", "Love to code!!!");
 			*/
 			
-			Instructor tempInstructor = new Instructor("Madhu", "Patel", "madhu@luv@code.com");
+			Instructor tempInstructor = new Instructor("alek", "xd", "madhu@luv@code.com");
 			
-			InstructorDetail tempInstructorDetail = new InstructorDetail("https://www.youtube.com", "Guitar");
+			InstructorDetail tempInstructorDetail = new InstructorDetail("https://www.youtube.com", "Guitar1");
 			
 			
 			
