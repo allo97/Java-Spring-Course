@@ -10,7 +10,7 @@ import com.alekCode.hibernate.entity.Instructor;
 import com.alekCode.hibernate.entity.InstructorDetail;
 import com.alekCode.hibernate.entity.Student;
 
-public class GetInstructorDetailDemo {
+public class DeleteInstructorDetailDemo {
 
 	public static void main(String[] args) {
 		
@@ -25,15 +25,23 @@ public class GetInstructorDetailDemo {
 			//start a transaction
 			session.beginTransaction();
 			
-			//get Instruction details by Id
-			int theId = 2;
-			InstructorDetail instructor_detail = session.get(InstructorDetail.class, theId);
+			//get instructor detail by primary key
+			int theId = 7;
+			InstructorDetail tempInstructorDetail = session.get(InstructorDetail.class,  theId);
 			
-			//print the instructor details
-			System.out.println("Instructor detail: " + instructor_detail);
+			//print instructor details
+			System.out.println("Found instructor details: " + tempInstructorDetail);
 			
-			//print the instructor
-			System.out.println("Associated Instructor: " + instructor_detail.getInstructor());
+			//print instructor details
+			System.out.println("Found instructor associated with above details: " + tempInstructorDetail.getInstructor());
+			
+			//delete the instructor detail
+			System.out.println("Deleting tempInstructorDetail " + tempInstructorDetail );
+			
+			// remove the associated object reference
+			// break bi-directional link
+			tempInstructorDetail.getInstructor().setInstructor_detail(null);
+			session.delete(tempInstructorDetail);
 			
 			//commit transaction
 			session.getTransaction().commit();
@@ -43,6 +51,8 @@ public class GetInstructorDetailDemo {
 		} catch(Exception exc) {
 			exc.printStackTrace();
 		} finally {
+			// handle connection leak issue
+			
 			session.close();
 			factory.close();
 		}

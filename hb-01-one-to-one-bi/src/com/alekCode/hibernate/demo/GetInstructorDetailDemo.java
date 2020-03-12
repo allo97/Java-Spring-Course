@@ -1,13 +1,16 @@
 package com.alekCode.hibernate.demo;
 
+import java.util.Date;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import com.alekCode.hibernate.entity.Instructor;
 import com.alekCode.hibernate.entity.InstructorDetail;
+import com.alekCode.hibernate.entity.Student;
 
-public class CreateDemo {
+public class GetInstructorDetailDemo {
 
 	public static void main(String[] args) {
 		
@@ -19,31 +22,18 @@ public class CreateDemo {
 		
 		try {
 			
-			//create the objects
-			System.out.println("Creating new Instructor and InstructorDetail object...");
-			
-			/*Instructor tempInstructor = new Instructor("Chad", "Darby", "darby@luv@code.com");
-			
-			InstructorDetail tempInstructorDetail = new InstructorDetail("https://www.alekcode.com/youtube", "Love to code!!!");
-			*/
-			
-			Instructor tempInstructor = new Instructor("alek", "xd", "madhu@luv@code.com");
-			
-			InstructorDetail tempInstructorDetail = new InstructorDetail("https://www.youtube.com", "Guitar1");
-			
-			
-			
-			//associate the Objects
-			tempInstructor.setInstructor_detail(tempInstructorDetail);
-			
 			//start a transaction
 			session.beginTransaction();
 			
-			//save the instructor
+			//get instructor detail by primary key
+			int theId = 2;
+			InstructorDetail tempInstructorDetail = session.get(InstructorDetail.class,  theId);
 			
-			//Note this will ALSO save the detail objects because of CascadeType.ALL
-			System.out.println("Saving instructor: " + tempInstructor);
-			session.save(tempInstructor);
+			//print instructor details
+			System.out.println("Found instructor details: " + tempInstructorDetail);
+			
+			//print instructor details
+			System.out.println("Found instructor associated with above details: " + tempInstructorDetail.getInstructor());
 			
 			//commit transaction
 			session.getTransaction().commit();
@@ -53,6 +43,9 @@ public class CreateDemo {
 		} catch(Exception exc) {
 			exc.printStackTrace();
 		} finally {
+			// handle connection leak issue
+			
+			session.close();
 			factory.close();
 		}
 	}
