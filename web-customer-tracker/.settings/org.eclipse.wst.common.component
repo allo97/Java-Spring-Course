@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="web-customer-tracker">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="lib" deploy-path="/WEB-INF" handle="module:/classpath/lib/C:/Users/aslod/Documents/Ważne foldery/PROGRAMOWANIE/Eclipse/web-customer-tracker/WebContent/WEB-INF/lib/mysql-connector-java-8.0.12.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="web-customer-tracker"/>
+        <property name="java-output-path" value="/web-customer-tracker/build/classes"/>
+    </wb-module>
+</project-modules>
